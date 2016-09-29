@@ -7,7 +7,8 @@ class SearchBar extends Component {
 // new instance created -> call constructor 
 	constructor(props){
 
-		// call it on Component (parent)
+		// call it on Component (paren
+		// now this.props is defined due to passing props to super
 		super(props);
 
 		this.state = {term: ''};
@@ -20,7 +21,11 @@ class SearchBar extends Component {
 	}
 
 	render () {
-		return <div><input onChange={this.onInputChange} />
+		return <div>
+
+		<input 
+		value = {this.state.term}
+		onChange={this.onInputChange} />
 		Value of input : {this.state.term}
 		</div>
 	}
