@@ -12,22 +12,36 @@ class SearchBar extends Component {
 		super(props);
 
 		this.state = {term: ''};
-		this.onInputChange = this.onInputChange.bind(this); 
+
+		this.onInputChange = this.onInputChange.bind(this)
+		//this.submit = this.submit.bind(this)
+		// I think the callbacks really weird in es6 
+		
+		
 	}
 	
-	onInputChange(event){
-		this.setState({term: event.target.value})
+	onInputChange (event){
+		this.setState({term: event.target.value});
+	}
+
+	submit (event) {
+		event.preventDefault();
+		this.props.onSearchTermChange(this.state.term); 
 	}
 
 	render () {
 		return (
 			<div className="search-bar">
-				<input 
-				value = {this.state.term}
-				onChange={this.onInputChange} />
+				<form onSubmit={(event) => this.submit(event)}>
+					<input 
+						value={this.state.term}
+						onChange={this.onInputChange} 
+						/>
+				</form>
 			</div>
 			)
 	}
+	
 }
 
 //functional component, no added functionality dumb component

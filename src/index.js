@@ -21,26 +21,31 @@ class App extends Component {
 		
 		super(props);
 
-		var _this = this; 
-		
 		this.state = {
 			videos: [],
 			selectedVideo: null
-		}; 
+		};
 
-		YTSearch({key: API_KEY, term: 'robotron'}, function(videos){
+		this.videoSearch('robotron') 
+
+	}
+
+	videoSearch(term){
+		console.log("term ", term)
+		var _this = this; 
+		YTSearch({key: API_KEY, term: term}, function(videos){
 			_this.setState({
 				videos: videos,
 				selectedVideo: videos[0]
 
 			})
 		});
-
 	}
+
 	render(){
 		return(
 			<div>
-				<SearchBar/>
+				<SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
 				<VideoDetail video={this.state.selectedVideo}/>
 				<VideoList 
 				onVideoSelect={selectedVideo => this.setState({selectedVideo})}
