@@ -27,6 +27,7 @@ class SearchBar extends Component {
 	submit (event) {
 		event.preventDefault();
 		this.props.onSearchTermChange(this.state.term); 
+		this.setState({term: ''});
 	}
 
 	render () {
